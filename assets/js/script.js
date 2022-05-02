@@ -5,6 +5,7 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
 var pageContentEl = document.querySelector("#page-content");
+var tasks = [];
 
 var taskFormHandler = function(event) {
   event.preventDefault();
@@ -29,8 +30,9 @@ var taskFormHandler = function(event) {
     completeEditTask(taskNameInput, taskTypeInput, taskId);
   } else {
     var taskDataObj = {
-      name: taskNameInput,
-      type: taskTypeInput
+        name: taskNameInput,
+        type: taskTypeInput,
+        status: "to do"
     };
 
     createTaskEl(taskDataObj);
@@ -46,6 +48,8 @@ var createTaskEl = function(taskDataObj) {
   taskInfoEl.className = "task-info";
   taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
   listItemEl.appendChild(taskInfoEl);
+  console.log(taskDataObj);
+console.log(taskDataObj.status);
 
   // create task actions (buttons and select) for task
   var taskActionsEl = createTaskActions(taskIdCounter);
